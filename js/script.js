@@ -60,3 +60,43 @@ navLinks.querySelectorAll('a').forEach(link=>{
     hamburgerBtn.setAttribute('aria-expanded', false);
   });
 });
+
+/* ---- contact form submission (PHP backend) ---- */
+
+const contactForm=document.getElementById('contactForm');
+const formStatus=document.getElementById('formStatus');
+
+contactForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const submitBtn=contactForm.querySelector('.form-submit');
+  submitBtn.disabled=true;
+  submitBtn.textContent='Sending...';
+  formStatus.textContent='';
+  formStatus.className='form-status';
+
+  fetch(contactForm.action, {
+    method:'POST',
+    body:new FormData(contactForm),
+    headers:{ 'X-Requested-With':'XMLHttpRequest' }
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.success){
+      formStatus.textContent='Thanks! Your message has been sent — I\'ll get back to you soon.';
+      formStatus.classList.add('success');
+      contactForm.reset();
+    } else {
+      formStatus.textContent=data.message || 'Something went wrong. Please try again or email me directly.';
+      formStatus.classList.add('error');
+    }
+  })
+  .catch(()=>{
+    formStatus.textContent='Could not send right now. Please try again or email me directly.';
+    formStatus.classList.add('error');
+  })
+  .finally(()=>{
+    submitBtn.disabled=false;
+    submitBtn.textContent='Send Message →';
+  });
+});

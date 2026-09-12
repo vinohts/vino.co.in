@@ -1,3 +1,6 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
+ 
 <nav>
   <div class="wrap">
     <div class="navlinks" id="navLinks">
@@ -27,7 +30,7 @@
     </button>
   </div>
 </nav>
-
+ 
 <header class="hero wrap" id="profile">
   <div class="hero-card">
     <div>
@@ -54,38 +57,44 @@
           </linearGradient>
         </defs>
         <circle cx="212" cy="212" r="184" fill="none" stroke="url(#ringGrad)" stroke-width="1" stroke-dasharray="2 6" opacity="0.5"/>
+        <defs>
+          <clipPath id="photoClip">
+            <circle cx="212" cy="212" r="110"/>
+          </clipPath>
+        </defs>
         <circle cx="212" cy="212" r="110" fill="rgba(79,139,255,0.08)" stroke="#4f8bff" stroke-width="1.6"/>
-        <text x="212" y="212" text-anchor="middle" fill="#eef3fb" font-size="13" font-family="IBM Plex Mono">KVS</text>
+        <image href="images/vino-01.png" x="102" y="102" width="220" height="220" clip-path="url(#photoClip)" preserveAspectRatio="xMidYMid slice"/>
+        <circle cx="212" cy="212" r="110" fill="none" stroke="#4f8bff" stroke-width="1.6"/>
         <g id="orbitNodes"></g>
       </svg>
     </div>
   </div>
 </header>
-
+ 
 <section class="section wrap" id="experience">
   <div class="section-head">
     <div class="section-eyebrow">Track record</div>
     <div class="section-title">Experience</div>
   </div>
   <div class="exp-list">
-
+ 
     <div class="exp-item" data-reveal>
       <div class="exp-head">
         <div>
           <div class="exp-role">Lead — DevOps &amp; SRE</div>
-          <div class="exp-company">Tech Mahindra · Client: Thomson Reuters (USA)</div>
+          <div class="exp-company">Tech Mahindra — Bengaluru· Client: Thomson Reuters (USA)</div>
         </div>
         <div class="exp-dates">Dec 2016 — Present · 10 yrs</div>
       </div>
       <ul class="exp-bullets">
-        <li>Manage 4,000+ servers across hybrid AWS, Azure &amp; VMware infrastructure, sustaining 99.9%+ availability.</li>
+        <li>Manage globally 4,000+ servers across hybrid AWS, Azure &amp; VMware infrastructure, sustaining 99.9%+ availability.</li>
         <li>Lead P1/P2 incident response, RCA and Change Advisory Board (CAB) governance for business-critical platforms.</li>
         <li>Built enterprise CI/CD on Jenkins, GitHub Actions &amp; Azure DevOps with pipeline governance and automated rollback.</li>
         <li>Own AWS (EC2, RDS, S3, IAM, CloudTrail) and Azure (VMs, VNets, Entra ID, Firewall) engineering, security &amp; cost optimization.</li>
         <li>Containerized workloads with Docker/ECS (EC2 &amp; Fargate) and led VMware ESXi/vCenter migrations with Veeam-based DR.</li>
       </ul>
     </div>
-
+ 
     <div class="exp-item" data-reveal>
       <div class="exp-head">
         <div>
@@ -101,7 +110,7 @@
         <li>Supported ERP and SQL Server 2008 environments, including backup, restore and routine maintenance.</li>
       </ul>
     </div>
-
+ 
     <div class="exp-item" data-reveal>
       <div class="exp-head">
         <div>
@@ -117,7 +126,7 @@
         <li>Delivered L2 Windows Server support, Active Directory administration and VDI/thin-client environments.</li>
       </ul>
     </div>
-
+ 
     <div class="exp-item" data-reveal>
       <div class="exp-head">
         <div>
@@ -133,7 +142,7 @@
         <li>Delivered L3/L4 support, coordinating with customers, vendors and internal support teams.</li>
       </ul>
     </div>
-
+ 
     <div class="exp-item" data-reveal>
       <div class="exp-head">
         <div>
@@ -149,10 +158,10 @@
         <li>Installed and maintained printers, scanners, LAN cabling and network hardware.</li>
       </ul>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <section class="section wrap" id="expertise">
   <div class="section-head">
     <div class="section-eyebrow">Cross-functional</div>
@@ -170,7 +179,7 @@
     <div class="panel" data-reveal><h3>AI-Assisted Engineering</h3><p>Claude, ChatGPT, GitHub Copilot &amp; Gemini for scripting, architecture design and documentation.</p></div>
   </div>
 </section>
-
+ 
 <section class="section wrap" id="awards">
   <div class="section-head">
     <div class="section-eyebrow">Recognition</div>
@@ -189,7 +198,7 @@
     <span class="badge">Service Award — 5 Years</span>
   </div>
 </section>
-
+ 
 <section class="section wrap" id="about">
   <div class="section-head">
     <div class="section-eyebrow">Credentials</div>
@@ -200,14 +209,14 @@
     <div class="panel" data-reveal><span class="tag">2022</span><h3 style="font-size:14px;">Azure Administrator</h3><p>AZ-104</p></div>
     <div class="panel" data-reveal><span class="tag">2022</span><h3 style="font-size:14px;">Azure Fundamentals</h3><p>AZ-900</p></div>
     <div class="panel" data-reveal><span class="tag">2020</span><h3 style="font-size:14px;">AWS Solutions Architect</h3><p>Associate certified</p></div>
-    <div class="panel" data-reveal><span class="tag">2016</span><h3 style="font-size:14px;">MCSA</h3><p>Microsoft Certified Solutions Associate</p></div>
+    <div class="panel" data-reveal><span class="tag">2016</span><h3 style="font-size:14px;">MCP | MCSA</h3><p>Microsoft Certified Solutions Associate</p></div>
     <div class="panel" data-reveal><span class="tag">2012</span><h3 style="font-size:14px;">Red Hat System Admin</h3><p>Linux Learning Center</p></div>
     <div class="panel" data-reveal><span class="tag">2005</span><h3 style="font-size:14px;">Hardware &amp; Networking</h3><p>Hardnet IT Academy</p></div>
-    <div class="panel" data-reveal><span class="tag">2001 – 2004</span><h3 style="font-size:14px;">Diploma in Computer Technology</h3><p>Polytechnic College</p></div>
-    <div class="panel" data-reveal><span class="tag">2001</span><h3 style="font-size:14px;">SSLC</h3><p>Fathima School</p></div>
+    <div class="panel" data-reveal><span class="tag">2001 – 2004</span><h3 style="font-size:14px;">Computer Technology</h3><p>Thanthai Roever Institute of Polytechnic College</p></div>
+    <div class="panel" data-reveal><span class="tag">2001</span><h3 style="font-size:14px;">SSLC</h3><p>Fatima Matriculation Higher Secondary School</p></div>
   </div>
 </section>
-
+ 
 <section class="section wrap" id="engagements">
   <div class="section-head">
     <div class="section-eyebrow">How I can help</div>
@@ -219,24 +228,72 @@
     <div class="panel" data-reveal><h3>DevOps &amp; CI/CD Enablement</h3><p>Building Jenkins/GitHub Actions/Azure DevOps pipelines with automated rollback strategies.</p></div>
   </div>
 </section>
-
+ 
 <section class="section wrap" id="contact">
   <div class="cta-band" data-reveal>
     <h2>Let's build something reliable.</h2>
     <p>Open to DevOps/SRE leadership roles, cloud &amp; infra consulting, and architecture engagements.</p>
+ 
     <div class="contact-boxes">
       <a class="contact-box" href="https://github.com/vinohts/" target="_blank" rel="noopener">GitHub</a>
       <a class="contact-box" href="https://www.linkedin.com/in/vinothkumar-shanmugam-6165664b/" target="_blank" rel="noopener">LinkedIn</a>
       <a class="contact-box" href="mailto:vino.hts@gmail.com">vino.hts@gmail.com</a>
       <a class="contact-box" href="tel:+919994011934">+91 99940 11934</a>
     </div>
+ 
+    <form class="contact-form" id="contactForm" action="contact.php" method="POST">
+      <div class="form-row">
+        <input type="text" name="name" id="name" placeholder="Your name" required>
+        <input type="email" name="email" id="email" placeholder="Your email" required>
+      </div>
+      <textarea name="message" id="message" rows="5" placeholder="Your message" required></textarea>
+      <button type="submit" class="btn-primary form-submit">Send Message →</button>
+      <p class="form-status" id="formStatus"></p>
+    </form>
   </div>
 </section>
-
+ 
 <footer>© <span id="year"></span> Vinoth Kumar · Bengaluru, India</footer>
-
-
-
+ 
+ 
+ 
 <script src="js/script.js"></script>
 </body>
 </html>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
