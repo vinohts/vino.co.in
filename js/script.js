@@ -41,3 +41,22 @@ const platforms=["AWS","Azure","VMware","Windows","Linux","Citrix","Security"]
 document.getElementById('year').textContent = new Date().getFullYear();
   const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.15});
   document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+/* ---- mobile hamburger menu ---- */
+
+const hamburgerBtn=document.getElementById('hamburgerBtn');
+const navLinks=document.getElementById('navLinks');
+
+hamburgerBtn.addEventListener('click', ()=>{
+  const isOpen=navLinks.classList.toggle('open');
+  hamburgerBtn.classList.toggle('open', isOpen);
+  hamburgerBtn.setAttribute('aria-expanded', isOpen);
+});
+
+navLinks.querySelectorAll('a').forEach(link=>{
+  link.addEventListener('click', ()=>{
+    navLinks.classList.remove('open');
+    hamburgerBtn.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', false);
+  });
+});

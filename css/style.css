@@ -56,6 +56,19 @@
   }
   .cv-btn:hover{filter:brightness(1.12);}
 
+  /* hamburger button — hidden on desktop, shown only on mobile */
+  .hamburger{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    width:32px; height:32px; background:none; border:none; cursor:pointer; padding:0;
+  }
+  .hamburger span{
+    display:block; width:100%; height:2px; background:var(--text); border-radius:2px;
+    transition: transform .25s ease, opacity .25s ease;
+  }
+  .hamburger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2){ opacity:0; }
+  .hamburger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
   /* HERO — this is where glassmorphism + gradient concentrate */
   .hero{padding:88px 0 70px;}
   .hero-card{
@@ -161,7 +174,50 @@
     .hero-card{grid-template-columns:1fr; padding:32px;}
     h1{font-size:32px;}
     .grid-3, .grid-4{grid-template-columns:1fr 1fr;}
-    .navlinks{display:none;}
+
+    .hamburger{ display:flex; }
+    nav .wrap{ grid-template-columns: 1fr auto auto; }
+    .navlinks{
+      display:flex; flex-direction:column; gap:0;
+      position:absolute; top:72px; left:0; right:0;
+      background: rgba(6,10,22,0.98);
+      border-bottom:1px solid rgba(120,160,255,0.14);
+      max-height:0; overflow:hidden;
+      transition: max-height .3s ease;
+    }
+    .navlinks.open{ max-height:400px; }
+    .navlinks a{
+      padding:14px 32px; border-top:1px solid rgba(120,160,255,0.08);
+    }
+  }
+
+  /* phone-specific tuning */
+  @media(max-width:480px){
+    .wrap{ padding:0 18px; }
+    .hero{ padding:56px 0 40px; }
+    .hero-card{ padding:22px; border-radius:20px; }
+    h1{ font-size:26px; }
+    .hero-sub{ font-size:14.5px; max-width:100%; }
+    .hero-cta{ flex-direction:column; gap:10px; }
+    .btn-primary, .btn-ghost{ text-align:center; width:100%; }
+    .socials{ gap:12px; font-size:11px; }
+
+    .ring-wrap{ height:300px; }
+
+    .section{ padding:52px 0; }
+    .section-title{ font-size:24px; }
+
+    .grid-3, .grid-4{ grid-template-columns:1fr; }
+
+    .exp-item{ padding:18px; }
+    .exp-role{ font-size:15.5px; }
+    .exp-dates{ font-size:10px; }
+
+    .cta-band{ padding:40px 22px; }
+    .cta-band h2{ font-size:24px; }
+    .contact-box{ width:100%; }
+
+    .cv-btn{ display:none; }
   }
   [data-reveal]{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
   [data-reveal].in{opacity:1; transform:translateY(0);}
