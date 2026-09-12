@@ -1,5 +1,5 @@
 const platforms=["AWS","Azure","VMware","Windows","Linux","Citrix","Security"]
-  const cx=212, cy=212, R=166;
+  const cx=212, cy=212, R=184;
   const g=document.getElementById('orbitNodes');
   const orbitDuration=105; // seconds per full revolution — slow, ambient drift
 
