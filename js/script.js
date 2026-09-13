@@ -61,6 +61,19 @@ navLinks.querySelectorAll('a').forEach(link=>{
   });
 });
 
+// close the mobile menu when tapping/clicking anywhere outside of it
+document.addEventListener('click', (e)=>{
+  const isOpen=navLinks.classList.contains('open');
+  const clickedInsideMenu=navLinks.contains(e.target);
+  const clickedHamburger=hamburgerBtn.contains(e.target);
+
+  if(isOpen && !clickedInsideMenu && !clickedHamburger){
+    navLinks.classList.remove('open');
+    hamburgerBtn.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', false);
+  }
+});
+
 /* ---- contact form submission (PHP backend) ---- */
 
 const contactForm=document.getElementById('contactForm');

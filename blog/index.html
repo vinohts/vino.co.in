@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Vinoth Kumar | DevOps &amp; SRE Troubleshooting Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ===== Self-contained styles — same design tokens as the main site ===== */
+  :root{
+    --bg: #060a16;
+    --panel: #0d1630;
+    --glass: rgba(79,139,255,0.06);
+    --blue: #4f8bff;
+    --cyan: #38d6d0;
+    --indigo: #7c6cf6;
+    --gold: #e8b95f;
+    --text: #eef3fb;
+    --muted: #7e8bab;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 70% 45% at 15% -8%, rgba(79,139,255,0.16), transparent),
+      radial-gradient(ellipse 55% 40% at 100% 10%, rgba(56,214,208,0.10), transparent),
+      linear-gradient(180deg, #060a16 0%, #050810 100%);
+    color: var(--text);
+    font-family:'Manrope', sans-serif;
+    line-height:1.6;
+  }
+  a{color:inherit; text-decoration:none;}
+  h1,h2,h3{font-family:'Sora', sans-serif;}
+  .wrap{max-width:800px; margin:0 auto; padding:0 24px;}
+
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:#080d1c; border-bottom:1px solid rgba(120,160,255,0.12);
+  }
+  nav .wrap{ max-width:1180px; display:flex; align-items:center; height:72px; }
+  nav a{
+    font-family:'Sora', sans-serif; font-weight:600; font-size:14.5px; color:var(--text);
+    padding:9px 18px; border-radius:10px; transition: background .25s, box-shadow .25s;
+  }
+  nav a:hover{
+    background: linear-gradient(120deg, rgba(79,139,255,0.22), rgba(124,108,246,0.22));
+    box-shadow: 0 4px 18px rgba(79,139,255,0.35);
+  }
+
+  .blog-hero{ padding:56px 0 30px; }
+  .section-eyebrow{
+    font-family:var(--mono); font-size:11.5px; color:var(--indigo); letter-spacing:0.1em;
+    text-transform:uppercase; margin-bottom:10px;
+  }
+  .blog-hero h1{ font-weight:700; font-size:36px; letter-spacing:-0.02em; margin-bottom:14px; }
+  .blog-hero p{ color:var(--muted); font-size:15px; max-width:520px; }
+
+  .blog-posts{ padding:10px 0 80px; display:flex; flex-direction:column; gap:16px; }
+
+  /* ===== identical box design to the main site's .panel ===== */
+  .panel{
+    background: var(--panel); border:1px solid rgba(120,160,255,0.08); border-radius:16px;
+    padding:24px; cursor:pointer; transition: border-color .25s, transform .25s;
+  }
+  .panel:hover{ border-color:rgba(79,139,255,0.35); transform:translateY(-3px); }
+  .panel .tag{
+    font-family:var(--mono); font-size:10.5px; color:var(--gold); margin-bottom:10px; display:inline-block;
+    margin-right:8px;
+  }
+  .panel h3{ font-size:16px; margin-bottom:6px; }
+  .panel p{ font-size:13px; color:var(--muted); }
+
+  .post-body{
+    max-height:0; overflow:hidden; opacity:0;
+    transition: max-height .4s ease, opacity .3s ease, margin-top .3s ease;
+  }
+  .panel.expanded .post-body{ max-height:2000px; opacity:1; margin-top:14px; }
+  .post-body p{ font-size:14px; color:var(--muted); margin-bottom:12px; line-height:1.6; }
+  .post-body p strong{ color:var(--text); }
+  .post-steps{ list-style:none; margin:0 0 12px; padding:0; display:flex; flex-direction:column; gap:7px; }
+  .post-steps li{ position:relative; padding-left:18px; color:var(--muted); font-size:13.5px; line-height:1.6; }
+  .post-steps li::before{ content:'▸'; position:absolute; left:0; top:0; color:var(--blue); }
+  .panel code{
+    font-family:var(--mono); font-size:12px; background:rgba(6,10,22,0.5);
+    padding:2px 6px; border-radius:4px; color:var(--cyan);
+  }
+  .post-toggle{
+    display:block; margin-top:12px; font-family:var(--mono); font-size:11.5px;
+    color:var(--blue); font-weight:600;
+  }
+  .toggle-less{ display:none; }
+  .panel.expanded .toggle-more{ display:none; }
+  .panel.expanded .toggle-less{ display:inline; color:var(--cyan); }
+
+  footer{
+    border-top:1px solid rgba(120,160,255,0.1); padding:30px 0; text-align:center;
+    color:var(--muted); font-size:12px; font-family:var(--mono);
+  }
+
+  @media(max-width:600px){
+    .blog-hero h1{ font-size:26px; }
+    .panel{ padding:20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html">← Back to Portfolio</a>
+  </div>
+</nav>
+
+<header class="blog-hero wrap">
+  <div class="section-eyebrow">Field notes</div>
+  <h1>Troubleshooting &amp; Ops Log</h1>
+  <p>Real fixes from real incidents — AWS, Azure, VMware, Linux and everything in between. Click a post to read the full write-up.</p>
+</header>
+
+<main class="wrap blog-posts">
+
+  <div class="panel" id="post-nginx-504-gateway" onclick="this.classList.toggle('expanded')">
+    <span class="tag">SEP 12, 2026</span><span class="tag">NGINX</span><span class="tag">LINUX</span>
+    <h3>504 Gateway Timeout on Nginx</h3>
+    <p>Traced to a hung upstream service — restart cleared it, health checks now catch it early.</p>
+
+    <div class="post-body">
+      <p><strong>Symptom:</strong> Users started hitting <code>504 Gateway Timeout</code> errors intermittently on a production web app fronted by Nginx. No deployments had gone out recently, and the errors weren't consistent — some requests succeeded, others timed out after ~60 seconds.</p>
+      <p><strong>Root cause:</strong> Nginx was acting as a reverse proxy to an upstream application service. The upstream service had entered a degraded state — its worker processes were alive but no longer accepting new connections, likely due to a connection pool exhaustion issue on the app side. Nginx correctly waited for a response, hit its <code>proxy_read_timeout</code>, and returned a 504 to the client.</p>
+      <p><strong>Fix:</strong></p>
+      <ul class="post-steps">
+        <li>Confirmed Nginx's error log (<code>/var/log/nginx/error.log</code>) showed repeated <code>upstream timed out</code> entries, ruling out Nginx config as the cause.</li>
+        <li>Checked the upstream service with <code>systemctl status app-service</code> — process was running but not responding.</li>
+        <li>Restarted the hung upstream service: <code>systemctl restart app-service</code>, clearing the stuck connections.</li>
+        <li>Reloaded Nginx (<code>systemctl reload nginx</code>) to drop any queued requests pointed at the old worker.</li>
+        <li>Lowered <code>proxy_read_timeout</code> and enabled active health checks on the upstream block.</li>
+      </ul>
+      <p><strong>Result:</strong> 504 errors stopped immediately. Added a monitoring alert on upstream response latency to catch this before it reaches users next time.</p>
+    </div>
+    <span class="post-toggle"><span class="toggle-more">Read more ↓</span><span class="toggle-less">Show less ↑</span></span>
+  </div>
+
+  <div class="panel" id="post-iis-was-restart" onclick="this.classList.toggle('expanded')">
+    <span class="tag">SEP 8, 2026</span><span class="tag">IIS</span><span class="tag">WINDOWS SERVER</span>
+    <h3>"Page Not Found" on IIS</h3>
+    <p>iisreset wouldn't hold — had to restart WAS before W3SVC would come back up cleanly.</p>
+
+    <div class="post-body">
+      <p><strong>Symptom:</strong> A Windows Server-hosted site started throwing <strong>HTTP 404 — Page Not Found</strong> for every request, including static content that hadn't changed in months. A straightforward <code>iisreset</code> did not resolve it — the site came back up briefly, then failed again within seconds.</p>
+      <p><strong>Root cause:</strong> IIS's World Wide Web Publishing Service (W3SVC) depends on the <strong>Windows Process Activation Service (WAS)</strong> to manage application pools and worker processes. WAS itself had entered a stopped/faulted state, likely due to a corrupted application pool configuration change made earlier that day.</p>
+      <p><strong>Fix:</strong></p>
+      <ul class="post-steps">
+        <li>Checked Windows Services (<code>services.msc</code>) and confirmed both W3SVC and WAS were in a stopped/erratic state.</li>
+        <li>Stopped both services manually and explicitly, one at a time — instead of a blanket <code>iisreset</code>.</li>
+        <li>Started <strong>WAS first</strong>, since W3SVC depends on it being healthy.</li>
+        <li>Once WAS reported "Running," started <strong>W3SVC</strong> next.</li>
+        <li>Verified the affected application pool had recycled cleanly in IIS Manager before testing the site.</li>
+      </ul>
+      <p><strong>Result:</strong> Site came back up immediately and stayed stable. Lesson: when <code>iisreset</code> doesn't hold, check WAS specifically — the dependency order (WAS → W3SVC) matters.</p>
+    </div>
+    <span class="post-toggle"><span class="toggle-more">Read more ↓</span><span class="toggle-less">Show less ↑</span></span>
+  </div>
+
+  <div class="panel" id="post-example-dns-timeout" onclick="this.classList.toggle('expanded')">
+    <span class="tag">SEP 13, 2026</span><span class="tag">AWS</span><span class="tag">DNS</span>
+    <h3>EC2 Intermittent DNS Failures</h3>
+    <p>VPC DNS resolver hit its per-ENI query limit under load — local caching fixed it.</p>
+
+    <div class="post-body">
+      <p><strong>Symptom:</strong> A subset of EC2 instances in a private subnet began failing outbound DNS lookups intermittently, causing application timeouts during peak traffic.</p>
+      <p><strong>Root cause:</strong> VPC DNS resolver was hitting the default 1024 packets/sec per-ENI limit under high concurrent lookup volume, silently dropping excess queries.</p>
+      <p><strong>Fix:</strong></p>
+      <ul class="post-steps">
+        <li>Deployed a local DNS caching layer (<code>dnsmasq</code> or <code>systemd-resolved</code>) on affected instances to reduce upstream query volume.</li>
+        <li>Split high-traffic services across multiple ENIs to distribute DNS query load.</li>
+        <li>Added CloudWatch alarms on VPC DNS query metrics to catch this proactively going forward.</li>
+      </ul>
+      <p><strong>Result:</strong> Timeout errors dropped to zero after rollout; verified over a full week of peak traffic cycles.</p>
+    </div>
+    <span class="post-toggle"><span class="toggle-more">Read more ↓</span><span class="toggle-less">Show less ↑</span></span>
+  </div>
+
+  <!-- ============================================= -->
+  <!-- NEW POST TEMPLATE — copy this whole div.panel   -->
+  <!-- block for every new post. Paste new posts as    -->
+  <!-- the FIRST box here so newest stays at the top.  -->
+  <!-- ============================================= -->
+
+</main>
+
+<footer>© <span id="year"></span> Vinoth Kumar · Bengaluru, India</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
